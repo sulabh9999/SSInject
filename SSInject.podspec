@@ -27,7 +27,7 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                    DESC
 
-  s.homepage     = "http://EXAMPLE/SSinject"
+  s.homepage     = "https://github.com/sulabh9999/SSInject/blob/master/README.md"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -52,9 +52,9 @@ Pod::Spec.new do |s|
   #  profile URL.
   #
 
-  s.author             = { "sulabh qg" => "sulabh9999@gmail.com" }
-  # Or just: s.author    = "sulabh qg"
-  # s.authors            = { "sulabh qg" => "sulabh9999@gmail.com" }
+  s.author             = { "sulabh shukla" => "sulabh9999@gmail.com" }
+  # Or just: s.author    = "sulabh shukla"
+  # s.authors            = { "sulabh shukla" => "sulabh9999@gmail.com" }
   # s.social_media_url   = "http://twitter.com/sulabh qg"
 
   # ――― Platform Specifics ――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "http://EXAMPLE/SSinject.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/sulabh9999/SSInject.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -90,7 +90,7 @@ Pod::Spec.new do |s|
   #  Not including the public_header_files will make all headers public.
   #
 
-  s.source_files  = "Classes", "Classes/**/*.{h,m}"
+  s.source_files  = "SSInject", "SSInject/**/*.{h,m, swift}"
   s.exclude_files = "Classes/Exclude"
 
   # s.public_header_files = "Classes/**/*.h"
