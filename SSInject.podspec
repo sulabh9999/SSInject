@@ -79,7 +79,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/sulabh9999/SSInject.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/sulabh9999/SSInject.git", :branch => "master" :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
