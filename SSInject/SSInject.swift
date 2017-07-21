@@ -7,53 +7,98 @@
 //
 
 import Foundation
-
+//import UIKit
 /*
-     Public class `Inject` provides singleton class for all classes in project
-*/
+ Public class `Inject` provides singleton class for all classes in project
+ */
+
+
+
 public class SSInject  {
     
     // variable that contains all registered object
-    fileprivate var storage : [ String : [String:Any]] = [:]
+    fileprivate var storage:[AnyObject] = []  // [Weak<AnyObject>]()
+    
+    
     
     // shared variable for Inject class
     public static var shared  = SSInject()
     
-    // find stored object in
-    public  func resolve<N>(ForObject:N.Type, name: String) -> Any? {
-        if let value = storage["\(ForObject.self)"] {
-            if let nameValue = value[name] {
-                // returns true if object with associated name is present
-                return nameValue
-            }
-        }
-        // return nil iff no object present in storage with related name
-        return nil
-        
+    
+    /// function compare multiple class and struct type object and returns true/false
+    ///
+    /// - Parameters:
+    ///   - instance: name of class
+    ///   - kind: expected class name
+    /// - Returns: if instance class matches with expected class type then return true else false.
+    fileprivate func `checkType`<T>(instance: Any, of kind: T.Type) -> Bool{
+        return instance is T;
     }
     
-    // register object and name pairs for specific class
-    public  func register<R>(regController: R.Type, pairs : [String:Any]) -> Void {
-        if storage["\(regController.self)"] == nil {
-            storage["\(regController.self)"] = pairs
-        }else {
-            print("Could not register :\(regController.self) because it is repeating in Injection")
+    // find stored object in
+    public  func resolve<R>(ForObject:R.Type) -> R? {
+        for all in storage {
+            if `checkType`(instance: all, of: R.self) {
+                return (all as? R)
+            }
         }
+        return nil
     }
+    
+    //      // find stored object in
+    //    public  func resolve<R>(ForObject:R.Type, name: String) -> R {
+    //        // pending feature
+    //    }
+    
+    
+    /// register object and name pairs for specific class
+    ///
+    /// - Parameters:
+    ///   - forClass: type of class that need to be store
+    ///   - object:  object of same class type
+    public  func register<R>(forClass: R.Type, object : R) -> Void {
+        for all in storage {
+            if type(of: all) is R.Type {
+                print("\(forClass) ..can not be registered because it is already register")
+                return
+            }
+        }
+        storage.append(object as AnyObject)
+        print("\(forClass) ..is registered")
+    }
+    
+    
     
     // remove all registrations
     public  func removeAll() {
-        storage = [:]
+        storage = []
     }
     
-    // replace service for associated classes class
-    public  func replaceService<M>(_ replaceObject: M.Type, pairs : [String:Any]) -> Bool {
-        if storage["\(replaceObject.self)"] != nil {
-            storage["\(replaceObject.self)"] = pairs
-            return true
-        }else{
-            return false
+    
+    
+    /// replace service for associated class (if present)
+    /// create new service for class (if not present)
+    ///
+    /// - Parameters:
+    ///   - forClass: type of class that need to be find
+    ///   - withObject: object of same class type
+    public  func replaceService<R>(_ forClass: R.Type, withObject : R) -> Void {
+        for i in 0..<storage.count {
+            if type(of: storage[i]) is R.Type {
+                storage[i] = withObject as AnyObject
+                return
+            }
         }
+        self.register(forClass: forClass, object: withObject)
+        //return false
     }
+    
+    
 }
+
+
+
+
+
+
 
