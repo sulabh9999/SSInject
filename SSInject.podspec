@@ -7,8 +7,9 @@ s.homepage     = "https://github.com/sulabh9999/SSInject/blob/master/README.md"
 s.license      = "MIT"
 s.platform     = :ios, "9.0"
 
-s.source       = { :git => "https://github.com/sulabh9999/SSInject.git",
-                      :tag => "v#{s.version.to_s}" }
+s.source       = { :git => "https://github.com/sulabh9999/SSInject.git"} 
+
+#,tag => "v#{s.version.to_s}" }
 
 
 s.source_files = "SSInject", "SSInject/**/*.{h,m,swift}"
